@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>识字伴</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fdf6f0;display:flex;justify-content:center;min-height:100vh}
+    .container{width:100%;max-width:480px;background:rgba(255,248,240,0.95);min-height:100vh;padding:20px}
+    .nav-title{font-size:1.5rem;font-weight:bold;color:#b45f3a;text-align:center;margin-bottom:20px}
+    .btn{background:#ecca9c;border:none;border-radius:40px;padding:16px;font-size:1.2rem;font-weight:bold;color:#4a3f35;width:100%;margin:10px 0;cursor:pointer}
+    .btn-secondary{background:#f7e9d7}
+    .card{background:#fff;border-radius:24px;padding:20px;margin-bottom:15px;box-shadow:0 4px 8px rgba(0,0,0,0.03)}
+    .big-char{font-size:5rem;text-align:center;color:#6b4e3d;margin:20px 0;background:#fff7f0;border-radius:20px;padding:20px}
+    .page{display:none}
+    .page.active{display:block}
+    input{padding:14px;border:1px solid #eddccd;border-radius:16px;width:100%;margin:8px 0;font-size:1rem}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-title">🌸 识字伴</div>
+
+  <!-- 登录 -->
+  <div class="page active" id="loginPage">
+    <h3 style="color:#b45f3a">登录 / 注册</h3>
+    <input type="email" id="email" placeholder="邮箱（妈妈可以用 mom@shiziban.com）" value="mom@shiziban.com">
+    <input type="password" id="password" placeholder="密码（简单好记）" value="123456">
+    <button class="btn" id="loginBtn">进入</button>
+    <p style="color:#888;text-align:center">第一次点自动注册，下次同邮箱登录</p>
+  </div>
+
+  <!-- 首页 -->
+  <div class="page" id="homePage">
+    <h2 id="welcome"></h2>
+    <div class="card">
+      <p>📖 已学字数：<span id="learnedCount">0</span></p>
+    </div>
+    <button class="btn" id="startLearnBtn">📚 开始识字</button>
+    <button class="btn btn-secondary" id="addCharBtn" style="display:none">➕ 添加汉字</button>
+    <button class="btn btn-secondary" onclick="logout()">退出</button>
+  </div>
+
+  <!-- 识字卡 -->
+  <div class="page" id="learnPage">
+    <div class="card">
+      <div class="big-char" id="charDisplay">字</div>
+      <div id="pinyinDisplay" style="text-align:center;font-size:1.5rem;color:#8c7b6b"></div>
+      <div id="meaningDisplay" style="text-align:center;margin:10px 0"></div>
+      <button class="btn" id="speakBtn">🔊 听读音</button>
+      <button class="btn btn-secondary" id="markLearnedBtn">✅ 认识啦</button>
+      <button class="btn" onclick="loadNext()">⏩ 下一个</button>
+      <button class="btn btn-secondary" onclick="goHome()">🏠 回首页</button>
+    </div>
+  </div>
+
+  <!-- 管理员加字 -->
+  <div class="page" id="adminPage">
+    <h3>添加新字</h3>
+    <input id="newChar" placeholder="汉字">
+    <input id="newPinyin" placeholder="拼音">
+    <input id="newMeaning" placeholder="意思">
+    <button class="btn" id="submitCharBtn">添加</button>
+    <button class="btn btn-secondary" onclick="goHome()">返回</button>
+  </div>
+</div>
+
+<script>
+  // ---- 你的专属配置 ----
+  const SUPABASE_URL = 'https://nqdzfutbozumathqccbq.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_MEt_sRz60PxKjn9ux3DSHw_cFD_sTia';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  let currentUser = null;
+
+  // 页面切换
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+  function goHome() { showPage('homePage'); loadStats(); }
+
+  // 朗读
+  function speak(text) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN'; u.rate = 0.9;
+    const voice = speechSynthesis.getVoices().find(v => v.lang.startsWith('zh')) || speechSynthesis.getVoices()[0];
+    if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  }
+
+  // 登录/注册
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    if (!email || !password) return alert('请输入邮箱和密码');
+    let { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      // 自动注册
+      const { error: signUpError } = await supabase.auth.signUp({ email, password });
+      if (signUpError) return alert('注册失败：' + signUpError.message);
+      // 注册后直接登录
+      const { data: newLogin } = await supabase.auth.signInWithPassword({ email, password });
+      if (newLogin?.user) {
+        currentUser = newLogin.user;
+        goHome();
+      }
+    } else {
+      currentUser = data.user;
+      goHome();
+    }
+  });
+
+  async function loadStats() {
+    document.getElementById('welcome').textContent = `👋 你好，${currentUser.email}`;
+    // 统计已学字数
+    const { count } = await supabase.from('learning_log').select('*', { count: 'exact', head: true }).eq('email', currentUser.email);
+    document.getElementById('learnedCount').textContent = count || 0;
+    // 管理员显示加字按钮（简单约定：邮箱包含 admin 则为管理员）
+    if (currentUser.email.includes('admin')) {
+      document.getElementById('addCharBtn').style.display = 'block';
+    } else {
+      document.getElementById('addCharBtn').style.display = 'none';
+    }
+  }
+
+  // 识字
+  document.getElementById('startLearnBtn').addEventListener('click', () => {
+    showPage('learnPage');
+    loadNext();
+  });
+
+  async function loadNext() {
+    const { data } = await supabase.from('characters').select('*').limit(1).maybeSingle();
+    if (data) {
+      document.getElementById('charDisplay').textContent = data.char;
+      document.getElementById('pinyinDisplay').textContent = data.pinyin || '';
+      document.getElementById('meaningDisplay').textContent = data.meaning || '';
+      speak(data.char);
+    } else {
+      document.getElementById('charDisplay').textContent = '库';
+      alert('字库为空，请管理员先添加汉字');
+    }
+  }
+  window.loadNext = loadNext;
+
+  document.getElementById('speakBtn').addEventListener('click', () => {
+    const char = document.getElementById('charDisplay').textContent;
+    if (char && char !== '库') speak(char);
+  });
+
+  document.getElementById('markLearnedBtn').addEventListener('click', async () => {
+    const char = document.getElementById('charDisplay').textContent;
+    if (!char || char === '库' || !currentUser) return;
+    await supabase.from('learning_log').insert({ email: currentUser.email, char });
+    loadNext();
+  });
+
+  // 管理员加字
+  document.getElementById('addCharBtn').addEventListener('click', () => showPage('adminPage'));
+  document.getElementById('submitCharBtn').addEventListener('click', async () => {
+    const char = document.getElementById('newChar').value.trim();
+    const pinyin = document.getElementById('newPinyin').value.trim();
+    const meaning = document.getElementById('newMeaning').value.trim();
+    if (!char || !pinyin) return alert('汉字和拼音必填');
+    const { error } = await supabase.from('characters').insert({ char, pinyin, meaning });
+    if (error) alert('添加失败');
+    else {
+      alert('添加成功！');
+      document.getElementById('newChar').value = '';
+      document.getElementById('newPinyin').value = '';
+      document.getElementById('newMeaning').value = '';
+      goHome();
+    }
+  });
+
+  async function logout() {
+    await supabase.auth.signOut();
+    currentUser = null;
+    showPage('loginPage');
+  }
+  window.logout = logout;
+</script>
+</body>
+</html>
