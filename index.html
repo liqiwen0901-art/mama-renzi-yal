@@ -74,7 +74,6 @@
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.06);
         }
 
-        /* ========== 顶部状态栏 ========== */
         .top-bar {
             display: flex;
             align-items: center;
@@ -123,7 +122,6 @@
             cursor: pointer;
         }
 
-        /* ========== 主内容区 ========== */
         .main-content {
             flex: 1;
             overflow-y: auto;
@@ -135,7 +133,6 @@
             display: none;
         }
 
-        /* ========== 底部导航 ========== */
         .bottom-nav {
             display: flex;
             background: var(--card-bg);
@@ -175,7 +172,6 @@
             transform: scale(1.1);
         }
 
-        /* ========== 卡片样式 ========== */
         .card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -194,7 +190,6 @@
             gap: 8px;
         }
 
-        /* ========== 学习大字卡片 ========== */
         .char-display-card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -241,16 +236,10 @@
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0%,
-            100% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
-        /* ========== 按钮 ========== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -306,7 +295,6 @@
             justify-content: center;
         }
 
-        /* ========== 选项网格 ========== */
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -339,7 +327,6 @@
             color: #c62828;
         }
 
-        /* ========== 进度条 ========== */
         .progress-bar-wrap {
             background: #f0e8e0;
             border-radius: 20px;
@@ -379,7 +366,6 @@
             margin-top: 2px;
         }
 
-        /* ========== 聊天区域 ========== */
         .chat-container {
             display: flex;
             flex-direction: column;
@@ -405,14 +391,8 @@
             animation: fadeInUp 0.25s ease;
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .chat-msg.mine {
             align-self: flex-end;
@@ -461,7 +441,6 @@
             border-color: var(--primary);
         }
 
-        /* ========== 主题标签 ========== */
         .topic-tags {
             display: flex;
             gap: 8px;
@@ -486,7 +465,6 @@
             font-weight: 700;
         }
 
-        /* ========== 难度标签 ========== */
         .level-badge {
             display: inline-block;
             padding: 4px 10px;
@@ -494,41 +472,22 @@
             font-size: var(--font-xs);
             font-weight: 700;
         }
-        .level-easy {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-        .level-medium {
-            background: #fff8e1;
-            color: #e67e22;
-        }
-        .level-hard {
-            background: #fce4e4;
-            color: #c62828;
-        }
+        .level-easy { background: #e8f5e9; color: #2e7d32; }
+        .level-medium { background: #fff8e1; color: #e67e22; }
+        .level-hard { background: #fce4e4; color: #c62828; }
 
-        /* ========== 弹窗/确认框 ========== */
         .overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: fadeIn 0.2s;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .dialog {
             background: #fff;
             border-radius: var(--radius);
@@ -537,33 +496,11 @@
             max-width: 380px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             animation: slideUp 0.3s ease;
         }
-        @keyframes slideUp {
-            from {
-                transform: translateY(40px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .dialog h3 {
-            font-size: var(--font-lg);
-            margin-bottom: 8px;
-        }
-        .dialog p {
-            font-size: var(--font-md);
-            color: var(--text-soft);
-            margin-bottom: 16px;
-        }
-        .dialog .btn-row {
-            justify-content: center;
-        }
+        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* ========== Toast ========== */
         .toast {
             position: fixed;
             top: 40px;
@@ -579,27 +516,9 @@
             pointer-events: none;
             white-space: nowrap;
         }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                top: 20px;
-            }
-            to {
-                opacity: 1;
-                top: 40px;
-            }
-        }
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-                top: 10px;
-            }
-        }
+        @keyframes toastIn { from { opacity:0; top:20px; } to { opacity:1; top:40px; } }
+        @keyframes toastOut { from { opacity:1; } to { opacity:0; top:10px; } }
 
-        /* ========== 游戏卡片 ========== */
         .game-card {
             background: linear-gradient(135deg, #fffdf7, #fff8ec);
             border: 2px dashed #e8d5b8;
@@ -613,19 +532,11 @@
             transform: scale(0.97);
             border-color: var(--primary);
         }
-        .game-emoji {
-            font-size: 50px;
-        }
+        .game-emoji { font-size: 50px; }
 
-        /* ========== 隐藏页面 ========== */
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: block;
-        }
+        .page { display: none; }
+        .page.active { display: block; }
 
-        /* ========== 安全提示条 ========== */
         .safety-badge {
             display: inline-flex;
             align-items: center;
@@ -638,27 +549,16 @@
             font-weight: 600;
         }
 
-        /* ========== 响应式微调 ========== */
         @media (max-width: 380px) {
-            .big-char {
-                font-size: 80px;
-            }
-            .btn {
-                padding: 12px 20px;
-                font-size: var(--font-sm);
-                min-height: 44px;
-            }
-            .option-btn {
-                padding: 14px 8px;
-                font-size: var(--font-sm);
-            }
+            .big-char { font-size: 80px; }
+            .btn { padding: 12px 20px; font-size: var(--font-sm); min-height: 44px; }
+            .option-btn { padding: 14px 8px; font-size: var(--font-sm); }
         }
     </style>
 </head>
 <body>
 
     <div class="app-container" id="appContainer">
-        <!-- 顶部栏 -->
         <div class="top-bar" id="topBar">
             <span class="greeting" id="greetingText">👋 识字乐园</span>
             <div style="display:flex;gap:8px;align-items:center;">
@@ -668,11 +568,8 @@
             </div>
         </div>
 
-        <!-- 主内容区 -->
         <div class="main-content" id="mainContent">
-            <!-- 首页 - 学习 -->
             <div class="page active" id="pageLearn">
-                <!-- 进度概览卡片 -->
                 <div class="card" style="padding:16px;">
                     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
                         <span style="font-weight:700;font-size:var(--font-md);">📚 学习进度</span>
@@ -688,7 +585,6 @@
                     </div>
                 </div>
 
-                <!-- 主题筛选 -->
                 <div style="margin-bottom:12px;">
                     <span style="font-weight:600;font-size:var(--font-sm);color:var(--text-soft);">📂 生活主题：</span>
                     <div class="topic-tags" id="topicTags">
@@ -703,7 +599,6 @@
                     </div>
                 </div>
 
-                <!-- 汉字展示卡片 -->
                 <div class="char-display-card" id="charCard">
                     <div class="big-char" id="bigChar">人</div>
                     <div class="pinyin-display" id="pinyinDisplay">rén</div>
@@ -715,7 +610,6 @@
                     <div class="tap-hint" id="tapHint">👆 点击喇叭听读音</div>
                 </div>
 
-                <!-- 学习操作按钮 -->
                 <div class="btn-row" style="margin-bottom:8px;">
                     <button class="btn btn-primary" id="btnMarkLearned" style="flex:1;">✅ 我学会了</button>
                     <button class="btn btn-outline" id="btnNextChar" style="flex:1;">➡️ 下一个字</button>
@@ -725,7 +619,6 @@
                     <button class="btn btn-ghost" id="btnWriteMode" style="flex:1;">✍️ 跟写练习</button>
                 </div>
 
-                <!-- 测验区(默认隐藏) -->
                 <div id="quizSection" style="display:none;margin-top:12px;">
                     <div class="card">
                         <div class="card-title">🎯 选一选：哪个是 "<span id="quizCharLabel">人</span>" 的正确读音？</div>
@@ -738,7 +631,6 @@
                 </div>
             </div>
 
-            <!-- 社群页 -->
             <div class="page" id="pageCommunity">
                 <div class="card" style="padding:14px;">
                     <div class="card-title">💬 家庭学习群</div>
@@ -753,7 +645,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- 小游戏入口 -->
                 <div class="game-card" id="gameCard1" style="margin-bottom:10px;">
                     <div class="game-emoji">🎮</div>
                     <div style="font-weight:700;font-size:var(--font-md);">字词接龙</div>
@@ -767,7 +658,6 @@
                 <div id="gameArea" style="display:none;margin-top:12px;"></div>
             </div>
 
-            <!-- 统计页 -->
             <div class="page" id="pageStats">
                 <div class="card">
                     <div class="card-title">📊 学习统计</div>
@@ -797,7 +687,6 @@
                 </div>
             </div>
 
-            <!-- 管理后台页 -->
             <div class="page" id="pageAdmin">
                 <div class="card">
                     <div class="card-title">🔧 管理后台</div>
@@ -835,78 +724,53 @@
             </div>
         </div>
 
-        <!-- 底部导航 -->
         <div class="bottom-nav" id="bottomNav">
-            <button class="nav-item active" data-page="pageLearn">
-                <span class="nav-icon">📖</span>学习
-            </button>
-            <button class="nav-item" data-page="pageCommunity">
-                <span class="nav-icon">💬</span>社群
-            </button>
-            <button class="nav-item" data-page="pageStats">
-                <span class="nav-icon">📊</span>统计
-            </button>
-            <button class="nav-item" data-page="pageAdmin" id="navAdmin" style="display:none;">
-                <span class="nav-icon">⚙️</span>管理
-            </button>
+            <button class="nav-item active" data-page="pageLearn"><span class="nav-icon">📖</span>学习</button>
+            <button class="nav-item" data-page="pageCommunity"><span class="nav-icon">💬</span>社群</button>
+            <button class="nav-item" data-page="pageStats"><span class="nav-icon">📊</span>统计</button>
+            <button class="nav-item" data-page="pageAdmin" id="navAdmin" style="display:none;"><span class="nav-icon">⚙️</span>管理</button>
         </div>
     </div>
 
-    <!-- Toast容器 -->
     <div id="toastContainer"></div>
-
-    <!-- 确认弹窗容器 -->
     <div id="dialogContainer"></div>
 
     <script>
-        // ==================== 配置 ====================
-        // ⚠️ 请替换为你的Supabase项目信息
-        const SUPABASE_URL = 'https://your-project-id.supabase.co';
-        const SUPABASE_ANON_KEY = 'your-anon-key-here';
+        // ==================== Supabase 配置（已使用您的项目信息） ====================
+        const SUPABASE_URL = 'https://puywenxhsznoxjczmvoy.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_7H5V4hT0CwrJwpqza7DPww__Y6nPQDT';
 
-        // ==================== Supabase初始化 ====================
+        // ==================== Supabase 初始化 ====================
         let supabase = null;
         let currentUser = null;
-        let userRole = 'learner'; // 'learner' | 'admin' | 'helper'
+        let userRole = 'learner';
 
         function initSupabase() {
-            if (SUPABASE_URL.includes('your-project-id')) {
-                // 演示模式 - 使用本地存储
-                console.warn('🔶 演示模式：Supabase未配置，使用本地存储');
-                return false;
-            }
             try {
                 supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                console.log('✅ Supabase已连接');
+                console.log('✅ Supabase 已连接');
                 return true;
             } catch (e) {
-                console.warn('Supabase初始化失败，使用本地模式:', e.message);
+                console.warn('Supabase 初始化失败，使用本地模式:', e.message);
                 return false;
             }
         }
         const isSupabaseConnected = initSupabase();
 
-        // ==================== 本地存储引擎（演示模式 / 离线备用） ====================
+        // ==================== 本地存储引擎（离线备用） ====================
         const LocalDB = {
             get(key, defaultValue = null) {
-                try {
-                    const raw = localStorage.getItem('literacy_' + key);
-                    return raw ? JSON.parse(raw) : defaultValue;
-                } catch { return defaultValue; }
+                try { const raw = localStorage.getItem('literacy_' + key); return raw ? JSON.parse(raw) : defaultValue; }
+                catch { return defaultValue; }
             },
             set(key, value) {
-                try {
-                    localStorage.setItem('literacy_' + key, JSON.stringify(value));
-                } catch { /* quota exceeded, ignore */ }
+                try { localStorage.setItem('literacy_' + key, JSON.stringify(value)); } catch { /* quota exceeded */ }
             },
-            remove(key) {
-                localStorage.removeItem('literacy_' + key);
-            }
+            remove(key) { localStorage.removeItem('literacy_' + key); }
         };
 
         // ==================== 默认字库 ====================
         const DEFAULT_CHAR_LIBRARY = [
-            // 入门级（笔画简单）
             { char: '人', pinyin: 'rén', example: '人民·人生', topic: '家人称呼', level: 1, id: 'c001' },
             { char: '大', pinyin: 'dà', example: '大人·大家', topic: '家居生活', level: 1, id: 'c002' },
             { char: '小', pinyin: 'xiǎo', example: '小孩·大小', topic: '家人称呼', level: 1, id: 'c003' },
@@ -917,7 +781,6 @@
             { char: '火', pinyin: 'huǒ', example: '火车·火柴', topic: '重庆特色', level: 1, id: 'c008' },
             { char: '水', pinyin: 'shuǐ', example: '水果·喝水', topic: '饮食烹饪', level: 1, id: 'c009' },
             { char: '日', pinyin: 'rì', example: '日出·生日', topic: '时间数字', level: 1, id: 'c010' },
-            // 初级
             { char: '妈', pinyin: 'mā', example: '妈妈·母亲', topic: '家人称呼', level: 2, id: 'c011' },
             { char: '爸', pinyin: 'bà', example: '爸爸·父亲', topic: '家人称呼', level: 2, id: 'c012' },
             { char: '哥', pinyin: 'gē', example: '哥哥·大哥', topic: '家人称呼', level: 2, id: 'c013' },
@@ -933,7 +796,6 @@
             { char: '车', pinyin: 'chē', example: '汽车·火车', topic: '交通出行', level: 2, id: 'c023' },
             { char: '路', pinyin: 'lù', example: '路上·走路', topic: '交通出行', level: 2, id: 'c024' },
             { char: '天', pinyin: 'tiān', example: '今天·明天', topic: '时间数字', level: 2, id: 'c025' },
-            // 中级
             { char: '锅', pinyin: 'guō', example: '火锅·铁锅', topic: '重庆特色', level: 3, id: 'c026' },
             { char: '辣', pinyin: 'là', example: '辣椒·麻辣', topic: '重庆特色', level: 3, id: 'c027' },
             { char: '城', pinyin: 'chéng', example: '城市·山城', topic: '重庆特色', level: 3, id: 'c028' },
@@ -951,11 +813,11 @@
         let learnedCharIds = new Set();
         let currentCharIndex = 0;
         let currentTopicFilter = 'all';
-        let currentLevelFilter = 0; // 0=全部
+        let currentLevelFilter = 0;
         let learningHistory = [];
         let streakData = { currentStreak: 0, lastLearnDate: null };
         let chatMessages = [];
-        let dailyLearnCount = {}; // { 'YYYY-MM-DD': count }
+        let dailyLearnCount = {};
 
         // ==================== 初始化 ====================
         function init() {
@@ -968,7 +830,6 @@
             updateProgressUI();
             updateStatsPage();
             checkStreak();
-            // 自动朗读招呼
             setTimeout(() => speakText('欢迎来到识字乐园，点击喇叭听读音吧'), 800);
             console.log('📖 识字乐园已就绪 | 字库:', charLibrary.length, '字 | 已学:', learnedCharIds.size, '字');
             console.log('🔒 安全模式 | 纯静态站点 | 无外部危险链接 | 数据本地加密存储');
@@ -978,17 +839,11 @@
             const savedLibrary = LocalDB.get('charLibrary');
             if (savedLibrary && Array.isArray(savedLibrary) && savedLibrary.length > 0) {
                 charLibrary = savedLibrary;
-            } else {
-                LocalDB.set('charLibrary', charLibrary);
-            }
+            } else { LocalDB.set('charLibrary', charLibrary); }
             const savedLearned = LocalDB.get('learnedCharIds');
-            if (savedLearned && Array.isArray(savedLearned)) {
-                learnedCharIds = new Set(savedLearned);
-            }
+            if (savedLearned && Array.isArray(savedLearned)) { learnedCharIds = new Set(savedLearned); }
             const savedHistory = LocalDB.get('learningHistory');
-            if (savedHistory && Array.isArray(savedHistory)) {
-                learningHistory = savedHistory;
-            }
+            if (savedHistory && Array.isArray(savedHistory)) { learningHistory = savedHistory; }
             const savedStreak = LocalDB.get('streakData');
             if (savedStreak) streakData = savedStreak;
             const savedChat = LocalDB.get('chatMessages');
@@ -996,15 +851,11 @@
             const savedDaily = LocalDB.get('dailyLearnCount');
             if (savedDaily) dailyLearnCount = savedDaily;
             const savedIndex = LocalDB.get('currentCharIndex');
-            if (savedIndex !== null && savedIndex >= 0 && savedIndex < charLibrary.length) {
-                currentCharIndex = savedIndex;
-            }
+            if (savedIndex !== null && savedIndex >= 0 && savedIndex < charLibrary.length) { currentCharIndex = savedIndex; }
             const savedRole = LocalDB.get('userRole');
             if (savedRole) userRole = savedRole;
-
-            // 模拟管理员（第一个用户默认为admin，实际项目中由Supabase认证决定）
             if (!LocalDB.get('userRole')) {
-                userRole = 'admin'; // 部署后首个用户为管理员
+                userRole = 'admin';
                 LocalDB.set('userRole', userRole);
             }
             updateAdminNav();
@@ -1015,7 +866,7 @@
             LocalDB.set('learnedCharIds', [...learnedCharIds]);
             LocalDB.set('learningHistory', learningHistory);
             LocalDB.set('streakData', streakData);
-            LocalDB.set('chatMessages', chatMessages.slice(-200)); // 保留最近200条
+            LocalDB.set('chatMessages', chatMessages.slice(-200));
             LocalDB.set('dailyLearnCount', dailyLearnCount);
             LocalDB.set('currentCharIndex', currentCharIndex);
             LocalDB.set('userRole', userRole);
@@ -1025,20 +876,13 @@
             const navAdmin = document.getElementById('navAdmin');
             if (userRole === 'admin' || userRole === 'helper') {
                 navAdmin.style.display = 'flex';
-            } else {
-                navAdmin.style.display = 'none';
-            }
+            } else { navAdmin.style.display = 'none'; }
         }
 
-        // ==================== 过滤后的字库 ====================
         function getFilteredLibrary() {
             let filtered = charLibrary;
-            if (currentTopicFilter !== 'all') {
-                filtered = filtered.filter(c => c.topic === currentTopicFilter);
-            }
-            if (currentLevelFilter > 0) {
-                filtered = filtered.filter(c => c.level === currentLevelFilter);
-            }
+            if (currentTopicFilter !== 'all') { filtered = filtered.filter(c => c.topic === currentTopicFilter); }
+            if (currentLevelFilter > 0) { filtered = filtered.filter(c => c.level === currentLevelFilter); }
             return filtered;
         }
 
@@ -1049,7 +893,6 @@
             return filtered[idx];
         }
 
-        // ==================== UI更新 ====================
         function updateCurrentChar() {
             const charData = getCurrentChar();
             const bigChar = document.getElementById('bigChar');
@@ -1057,40 +900,26 @@
             const wordExample = document.getElementById('wordExample');
             const levelBadge = document.getElementById('levelBadge');
             const tapHint = document.getElementById('tapHint');
-            const btnSpeak = document.getElementById('btnSpeak');
-
             if (!charData) {
-                bigChar.textContent = '📖';
-                pinyinDisplay.textContent = '暂无内容';
-                wordExample.textContent = '请添加字库或切换主题';
-                levelBadge.textContent = '';
-                levelBadge.className = 'level-badge';
-                tapHint.textContent = '请先添加字库';
-                return;
+                bigChar.textContent = '📖'; pinyinDisplay.textContent = '暂无内容';
+                wordExample.textContent = '请添加字库或切换主题'; levelBadge.textContent = ''; levelBadge.className = 'level-badge';
+                tapHint.textContent = '请先添加字库'; return;
             }
-
             bigChar.textContent = charData.char;
             pinyinDisplay.textContent = charData.pinyin;
             wordExample.textContent = charData.example;
             levelBadge.textContent = getLevelLabel(charData.level);
             levelBadge.className = 'level-badge ' + getLevelClass(charData.level);
             tapHint.textContent = '👆 点击喇叭听读音';
-            btnSpeak.style.display = 'flex';
-
-            // 高亮：已学过的字
             if (learnedCharIds.has(charData.id)) {
-                bigChar.style.color = '#5BA87D';
-                tapHint.textContent = '✅ 已掌握 | 点击喇叭复习';
-            } else {
-                bigChar.style.color = '#3D2C1E';
-            }
+                bigChar.style.color = '#5BA87D'; tapHint.textContent = '✅ 已掌握 | 点击喇叭复习';
+            } else { bigChar.style.color = '#3D2C1E'; }
         }
 
         function getLevelLabel(level) {
             const labels = { 1: '⭐ 入门', 2: '⭐⭐ 初级', 3: '⭐⭐⭐ 中级', 4: '⭐⭐⭐⭐ 高级' };
             return labels[level] || '⭐ 入门';
         }
-
         function getLevelClass(level) {
             const classes = { 1: 'level-easy', 2: 'level-easy', 3: 'level-medium', 4: 'level-hard' };
             return classes[level] || 'level-easy';
@@ -1120,8 +949,7 @@
             const bars = document.getElementById('trendBars').children;
             const today = new Date();
             for (let i = 6; i >= 0; i--) {
-                const d = new Date(today);
-                d.setDate(d.getDate() - i);
+                const d = new Date(today); d.setDate(d.getDate() - i);
                 const key = d.toISOString().split('T')[0];
                 const count = dailyLearnCount[key] || 0;
                 const maxCount = Math.max(1, ...Object.values(dailyLearnCount), 5);
@@ -1130,8 +958,7 @@
                 if (bars[barIndex]) {
                     bars[barIndex].style.height = Math.max(5, pct) + '%';
                     bars[barIndex].title = key + ': ' + count + '字';
-                    if (count > 0) bars[barIndex].style.background = '#E8784A';
-                    else bars[barIndex].style.background = '#f0e0d0';
+                    bars[barIndex].style.background = count > 0 ? '#E8784A' : '#f0e0d0';
                 }
             }
         }
@@ -1140,8 +967,7 @@
             const container = document.getElementById('recentCharsList');
             const recent = learningHistory.slice(-12).reverse();
             if (recent.length === 0) {
-                container.innerHTML =
-                '<span style="color:var(--text-soft);font-size:var(--font-sm);">还没有学习记录~</span>';
+                container.innerHTML = '<span style="color:var(--text-soft);font-size:var(--font-sm);">还没有学习记录~</span>';
                 return;
             }
             container.innerHTML = recent.map(h => {
@@ -1154,32 +980,19 @@
         function renderTopicTags() {
             const container = document.getElementById('topicTags');
             const tags = container.querySelectorAll('.topic-tag');
-            tags.forEach(tag => {
-                tag.classList.toggle('active', tag.dataset.topic === currentTopicFilter);
-            });
+            tags.forEach(tag => { tag.classList.toggle('active', tag.dataset.topic === currentTopicFilter); });
         }
 
         function renderAllPages() {
-            updateCurrentChar();
-            updateProgressUI();
-            updateStatsPage();
-            renderChatMessages();
+            updateCurrentChar(); updateProgressUI(); updateStatsPage(); renderChatMessages();
         }
 
         // ==================== 语音朗读 ====================
         function speakText(text) {
-            if (!('speechSynthesis' in window)) {
-                showToast('⚠️ 您的浏览器不支持语音朗读');
-                return;
-            }
-            // 取消之前的朗读
+            if (!('speechSynthesis' in window)) { showToast('⚠️ 您的浏览器不支持语音朗读'); return; }
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'zh-CN';
-            utterance.rate = 0.7; // 慢速朗读，适合学习者
-            utterance.pitch = 1.1;
-            utterance.volume = 0.9;
-            // 尝试选择中文语音
+            utterance.lang = 'zh-CN'; utterance.rate = 0.7; utterance.pitch = 1.1; utterance.volume = 0.9;
             const voices = window.speechSynthesis.getVoices();
             const zhVoice = voices.find(v => v.lang.startsWith('zh-CN') || v.lang.startsWith('zh-'));
             if (zhVoice) utterance.voice = zhVoice;
@@ -1190,15 +1003,12 @@
         function speakCurrentChar() {
             const charData = getCurrentChar();
             if (!charData) return;
-            // 先读汉字，再读拼音
             speakText(charData.char + '，' + charData.pinyin + '，' + charData.example.replace('·', '、'));
-            // 视觉反馈
             const bigChar = document.getElementById('bigChar');
             bigChar.style.transform = 'scale(1.1)';
             setTimeout(() => { bigChar.style.transform = 'scale(1)'; }, 300);
         }
 
-        // 预加载语音列表
         if ('speechSynthesis' in window) {
             window.speechSynthesis.getVoices();
             window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
@@ -1207,38 +1017,22 @@
         // ==================== 学习操作 ====================
         function markAsLearned() {
             const charData = getCurrentChar();
-            if (!charData) {
-                showToast('⚠️ 没有可学习的字');
-                return;
-            }
-            if (learnedCharIds.has(charData.id)) {
-                showToast('✅ 这个字已经学过了~');
-                return;
-            }
-            // 安全确认（防误触）
-            showConfirm(
-                '确认学会？',
-                '你确定已经学会 "' + charData.char + '"（' + charData.pinyin + '）了吗？',
-                () => {
-                    learnedCharIds.add(charData.id);
-                    learningHistory.push({
-                        charId: charData.id,
-                        timestamp: new Date().toISOString(),
-                        action: 'learned'
-                    });
-                    const today = new Date().toISOString().split('T')[0];
-                    dailyLearnCount[today] = (dailyLearnCount[today] || 0) + 1;
-                    updateStreak();
-                    saveAllData();
-                    updateProgressUI();
-                    updateStatsPage();
-                    updateCurrentChar();
-                    showToast('🎉 太棒了！学会了「' + charData.char + '」');
-                    speakText('太棒了！你学会了' + charData.char);
-                    // 自动跳到下一个字
-                    setTimeout(moveToNextChar, 1500);
-                }
-            );
+            if (!charData) { showToast('⚠️ 没有可学习的字'); return; }
+            if (learnedCharIds.has(charData.id)) { showToast('✅ 这个字已经学过了~'); return; }
+            showConfirm('确认学会？', '你确定已经学会 "' + charData.char + '"（' + charData.pinyin + '）了吗？', () => {
+                learnedCharIds.add(charData.id);
+                learningHistory.push({ charId: charData.id, timestamp: new Date().toISOString(), action: 'learned' });
+                const today = new Date().toISOString().split('T')[0];
+                dailyLearnCount[today] = (dailyLearnCount[today] || 0) + 1;
+                updateStreak();
+                saveAllData();
+                updateProgressUI();
+                updateStatsPage();
+                updateCurrentChar();
+                showToast('🎉 太棒了！学会了「' + charData.char + '」');
+                speakText('太棒了！你学会了' + charData.char);
+                setTimeout(moveToNextChar, 1500);
+            });
         }
 
         function moveToNextChar() {
@@ -1248,23 +1042,17 @@
             saveAllData();
             updateCurrentChar();
             updateProgressUI();
-            // 滚动到卡片
             document.getElementById('charCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            // 自动朗读新字
             setTimeout(speakCurrentChar, 400);
         }
 
         function updateStreak() {
             const today = new Date().toISOString().split('T')[0];
             if (streakData.lastLearnDate === today) return;
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
             const yesterdayStr = yesterday.toISOString().split('T')[0];
-            if (streakData.lastLearnDate === yesterdayStr) {
-                streakData.currentStreak += 1;
-            } else if (streakData.lastLearnDate !== today) {
-                streakData.currentStreak = 1;
-            }
+            if (streakData.lastLearnDate === yesterdayStr) { streakData.currentStreak += 1; }
+            else if (streakData.lastLearnDate !== today) { streakData.currentStreak = 1; }
             streakData.lastLearnDate = today;
             saveAllData();
         }
@@ -1274,14 +1062,10 @@
             if (streakData.lastLearnDate && streakData.lastLearnDate !== today) {
                 const lastDate = new Date(streakData.lastLearnDate);
                 const diffDays = Math.floor((new Date() - lastDate) / (1000 * 60 * 60 * 24));
-                if (diffDays > 1) {
-                    streakData.currentStreak = 0;
-                    saveAllData();
-                }
+                if (diffDays > 1) { streakData.currentStreak = 0; saveAllData(); }
             }
         }
 
-        // ==================== 测验模式 ====================
         function startQuiz() {
             const charData = getCurrentChar();
             if (!charData) return;
@@ -1289,78 +1073,46 @@
             quizSection.style.display = 'block';
             document.getElementById('quizCharLabel').textContent = charData.char;
             document.getElementById('quizFeedback').textContent = '';
-
-            // 生成4个选项（包含正确拼音）
             const correctPinyin = charData.pinyin;
-            const allPinyins = charLibrary
-                .filter(c => c.id !== charData.id)
-                .map(c => c.pinyin)
-                .filter((v, i, a) => a.indexOf(v) === i)
-                .slice(0, 3);
+            const allPinyins = charLibrary.filter(c => c.id !== charData.id).map(c => c.pinyin).filter((v,i,a) => a.indexOf(v)===i).slice(0,3);
             const options = [correctPinyin, ...allPinyins].sort(() => Math.random() - 0.5);
-
             const optionsGrid = document.getElementById('quizOptions');
-            optionsGrid.innerHTML = options.map(opt => `
-            <button class="option-btn" data-pinyin="${opt}">${opt}</button>
-          `).join('');
-
-            // 选项点击事件
+            optionsGrid.innerHTML = options.map(opt => `<button class="option-btn" data-pinyin="${opt}">${opt}</button>`).join('');
             optionsGrid.querySelectorAll('.option-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const selected = this.dataset.pinyin;
                     const feedback = document.getElementById('quizFeedback');
-                    optionsGrid.querySelectorAll('.option-btn').forEach(b => b.disabled =
-                        true);
+                    optionsGrid.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
                     if (selected === correctPinyin) {
                         this.classList.add('correct');
-                        feedback.textContent = '✅ 正确！太棒了！';
-                        feedback.style.color = '#2e7d32';
+                        feedback.textContent = '✅ 正确！太棒了！'; feedback.style.color = '#2e7d32';
                         speakText('正确！你真棒！');
                         if (!learnedCharIds.has(charData.id)) {
                             learnedCharIds.add(charData.id);
-                            learningHistory.push({
-                                charId: charData.id,
-                                timestamp: new Date().toISOString(),
-                                action: 'quiz_passed'
-                            });
+                            learningHistory.push({ charId: charData.id, timestamp: new Date().toISOString(), action: 'quiz_passed' });
                             const today = new Date().toISOString().split('T')[0];
                             dailyLearnCount[today] = (dailyLearnCount[today] || 0) + 1;
-                            updateStreak();
-                            saveAllData();
-                            updateProgressUI();
-                            updateStatsPage();
+                            updateStreak(); saveAllData(); updateProgressUI(); updateStatsPage();
                         }
                     } else {
                         this.classList.add('wrong');
-                        feedback.textContent = '❌ 再想想，正确读音是：' + correctPinyin;
-                        feedback.style.color = '#c62828';
+                        feedback.textContent = '❌ 再想想，正确读音是：' + correctPinyin; feedback.style.color = '#c62828';
                         speakText('没关系，正确读音是' + correctPinyin);
-                        // 高亮正确答案
-                        optionsGrid.querySelectorAll('.option-btn').forEach(b => {
-                            if (b.dataset.pinyin === correctPinyin) b.classList.add(
-                                'correct');
-                        });
+                        optionsGrid.querySelectorAll('.option-btn').forEach(b => { if (b.dataset.pinyin === correctPinyin) b.classList.add('correct'); });
                     }
-                    setTimeout(() => {
-                        document.getElementById('quizSection').style.display = 'none';
-                        updateCurrentChar();
-                    }, 2000);
+                    setTimeout(() => { quizSection.style.display = 'none'; updateCurrentChar(); }, 2000);
                 });
             });
             quizSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        function closeQuiz() {
-            document.getElementById('quizSection').style.display = 'none';
-        }
+        function closeQuiz() { document.getElementById('quizSection').style.display = 'none'; }
 
-        // ==================== 跟写练习模式 ====================
         function startWriteMode() {
             const charData = getCurrentChar();
             if (!charData) return;
             showToast('✍️ 请准备纸和笔，跟着屏幕上的「' + charData.char + '」字练习书写');
             speakText('请看着屏幕上的' + charData.char + '字，在纸上跟着写一写。先写一横，再写一竖...慢慢来，多写几遍');
-            // 让大字闪烁引导
             const bigChar = document.getElementById('bigChar');
             bigChar.style.animation = 'pulse 0.6s 3';
             setTimeout(() => { bigChar.style.animation = ''; }, 1800);
@@ -1368,16 +1120,9 @@
 
         // ==================== 聊天/社群 ====================
         function sendMessage(text, sender = '我', isSystem = false) {
-            const msg = {
-                id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-                text,
-                sender,
-                timestamp: new Date().toISOString(),
-                isSystem,
-                isMine: sender === '我'
-            };
+            const msg = { id: Date.now().toString(36)+Math.random().toString(36).slice(2,6), text, sender, timestamp: new Date().toISOString(), isSystem, isMine: sender === '我' };
             chatMessages.push(msg);
-            if (chatMessages.length > 500) chatMessages.shift(); // 保留500条
+            if (chatMessages.length > 500) chatMessages.shift();
             saveAllData();
             renderChatMessages();
             scrollChatToBottom();
@@ -1386,50 +1131,29 @@
         function renderChatMessages() {
             const container = document.getElementById('chatMessages');
             if (chatMessages.length === 0) {
-                container.innerHTML =
-                    '<div class="chat-msg system">👋 欢迎来到家庭学习群！在这里可以互相鼓励、一起学习~</div>';
+                container.innerHTML = '<div class="chat-msg system">👋 欢迎来到家庭学习群！在这里可以互相鼓励、一起学习~</div>';
                 return;
             }
             container.innerHTML = chatMessages.map(msg => {
-                if (msg.isSystem) {
-                    return `<div class="chat-msg system">${escapeHtml(msg.text)}</div>`;
-                }
+                if (msg.isSystem) return `<div class="chat-msg system">${escapeHtml(msg.text)}</div>`;
                 const cls = msg.isMine ? 'mine' : 'others';
                 const senderLabel = msg.isMine ? '' : `<div class="chat-sender">${escapeHtml(msg.sender)}</div>`;
                 return `<div class="chat-msg ${cls}">${senderLabel}${escapeHtml(msg.text)}</div>`;
             }).join('');
         }
 
-        function scrollChatToBottom() {
-            const container = document.getElementById('chatMessages');
-            setTimeout(() => { container.scrollTop = container.scrollHeight; }, 100);
-        }
-
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
+        function scrollChatToBottom() { setTimeout(() => { const c = document.getElementById('chatMessages'); c.scrollTop = c.scrollHeight; }, 100); }
+        function escapeHtml(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
 
         function handleSendMessage() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if (!text) return;
-            if (text.length > 200) {
-                showToast('⚠️ 消息不能超过200字');
-                return;
-            }
+            if (text.length > 200) { showToast('⚠️ 消息不能超过200字'); return; }
             sendMessage(text, '我', false);
             input.value = '';
-            // 模拟自动回复（AI助手）
             setTimeout(() => {
-                const aiReplies = [
-                    '加油！今天也要认真学习哦~ 💪',
-                    '你好棒！继续保持！',
-                    '学习认字是一件很有意义的事情呢！',
-                    '有什么不懂的字可以问我~',
-                    '慢慢来，不着急，每一个字都是一份收获 🌟',
-                ];
+                const aiReplies = ['加油！今天也要认真学习哦~ 💪','你好棒！继续保持！','学习认字是一件很有意义的事情呢！','有什么不懂的字可以问我~','慢慢来，不着急，每一个字都是一份收获 🌟'];
                 const reply = aiReplies[Math.floor(Math.random() * aiReplies.length)];
                 sendMessage(reply, '🤖 AI小助手', false);
             }, 1500);
@@ -1438,7 +1162,6 @@
         function handleVoiceMessage() {
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
                 showToast('⚠️ 语音输入需要Chrome浏览器支持');
-                // 降级：直接朗读提示
                 speakText('语音消息功能需要Chrome浏览器。你可以打字发消息哦。');
                 return;
             }
@@ -1447,85 +1170,63 @@
             sendMessage('🗣️ [语音消息]', '我', false);
         }
 
-        // ==================== 小游戏 ====================
         function startWordChainGame() {
             const gameArea = document.getElementById('gameArea');
             const charData = getCurrentChar();
-            if (!charData || !charData.example) {
-                showToast('⚠️ 当前字没有组词，换个字试试');
-                return;
-            }
+            if (!charData || !charData.example) { showToast('⚠️ 当前字没有组词，换个字试试'); return; }
             const words = charData.example.split('·');
-            const lastWord = words[words.length - 1];
-            const lastChar = lastWord[lastWord.length - 1];
+            const lastWord = words[words.length-1];
+            const lastChar = lastWord[lastWord.length-1];
             gameArea.style.display = 'block';
             gameArea.innerHTML = `
-            <div class="card">
-              <div class="card-title">🎮 字词接龙</div>
-              <p style="font-size:var(--font-md);">起始词：<strong style="font-size:var(--font-lg);color:var(--primary);">${charData.example}</strong></p>
-              <p style="font-size:var(--font-md);">请用 <strong style="color:var(--primary);font-size:var(--font-lg);">"${lastChar}"</strong> 开头组词！</p>
-              <input type="text" class="chat-input" id="gameChainInput" placeholder="输入以「${lastChar}」开头的词" style="margin-top:8px;">
-              <button class="btn btn-primary" id="btnSubmitChain" style="width:100%;margin-top:8px;">提交</button>
-              <div id="chainResult" style="margin-top:8px;font-weight:600;"></div>
-              <button class="btn btn-ghost" id="btnCloseGame" style="width:100%;margin-top:4px;">关闭游戏</button>
-            </div>
-          `;
+                <div class="card">
+                  <div class="card-title">🎮 字词接龙</div>
+                  <p style="font-size:var(--font-md);">起始词：<strong style="font-size:var(--font-lg);color:var(--primary);">${charData.example}</strong></p>
+                  <p style="font-size:var(--font-md);">请用 <strong style="color:var(--primary);font-size:var(--font-lg);">"${lastChar}"</strong> 开头组词！</p>
+                  <input type="text" class="chat-input" id="gameChainInput" placeholder="输入以「${lastChar}」开头的词" style="margin-top:8px;">
+                  <button class="btn btn-primary" id="btnSubmitChain" style="width:100%;margin-top:8px;">提交</button>
+                  <div id="chainResult" style="margin-top:8px;font-weight:600;"></div>
+                  <button class="btn btn-ghost" id="btnCloseGame" style="width:100%;margin-top:4px;">关闭游戏</button>
+                </div>`;
             gameArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
             document.getElementById('btnSubmitChain').addEventListener('click', () => {
                 const input = document.getElementById('gameChainInput');
                 const answer = input.value.trim();
                 const result = document.getElementById('chainResult');
-                if (!answer) {
-                    result.textContent = '⚠️ 请输入一个词';
-                    result.style.color = '#c62828';
-                    return;
-                }
+                if (!answer) { result.textContent = '⚠️ 请输入一个词'; result.style.color = '#c62828'; return; }
                 if (answer[0] === lastChar) {
-                    result.textContent = '🎉 太棒了！「' + answer + '」是正确的！';
-                    result.style.color = '#2e7d32';
+                    result.textContent = '🎉 太棒了！「' + answer + '」是正确的！'; result.style.color = '#2e7d32';
                     speakText('太棒了！' + answer + '是正确的！');
                     sendMessage('🎮 接龙游戏：' + charData.example + ' → ' + answer, '🎮 游戏', true);
                 } else {
-                    result.textContent = '❌ 需要以「' + lastChar + '」开头哦，再试试~';
-                    result.style.color = '#c62828';
+                    result.textContent = '❌ 需要以「' + lastChar + '」开头哦，再试试~'; result.style.color = '#c62828';
                     speakText('需要以' + lastChar + '开头，再试试吧');
                 }
             });
-            document.getElementById('btnCloseGame').addEventListener('click', () => {
-                gameArea.style.display = 'none';
-            });
+            document.getElementById('btnCloseGame').addEventListener('click', () => { gameArea.style.display = 'none'; });
         }
 
         function startRushGame() {
             const gameArea = document.getElementById('gameArea');
             const filtered = getFilteredLibrary();
-            if (filtered.length < 2) {
-                showToast('⚠️ 字库不够，请先添加更多字');
-                return;
-            }
+            if (filtered.length < 2) { showToast('⚠️ 字库不够，请先添加更多字'); return; }
             const target = filtered[Math.floor(Math.random() * filtered.length)];
             gameArea.style.display = 'block';
             gameArea.innerHTML = `
-            <div class="card" style="text-align:center;">
-              <div class="card-title">🏆 识字抢答</div>
-              <p style="font-size:var(--font-sm);color:var(--text-soft);">读出这个字的拼音！</p>
-              <div style="font-size:90px;font-weight:900;color:var(--text);margin:16px 0;">${target.char}</div>
-              <button class="btn btn-primary" id="btnRevealAnswer" style="width:100%;">🔍 查看答案</button>
-              <div id="rushAnswer" style="margin-top:10px;font-size:var(--font-lg);font-weight:700;display:none;">
-                ${target.pinyin} — ${target.example}
-              </div>
-              <button class="btn btn-ghost" id="btnCloseRush" style="width:100%;margin-top:8px;">关闭</button>
-            </div>
-          `;
+                <div class="card" style="text-align:center;">
+                  <div class="card-title">🏆 识字抢答</div>
+                  <p style="font-size:var(--font-sm);color:var(--text-soft);">读出这个字的拼音！</p>
+                  <div style="font-size:90px;font-weight:900;color:var(--text);margin:16px 0;">${target.char}</div>
+                  <button class="btn btn-primary" id="btnRevealAnswer" style="width:100%;">🔍 查看答案</button>
+                  <div id="rushAnswer" style="margin-top:10px;font-size:var(--font-lg);font-weight:700;display:none;">${target.pinyin} — ${target.example}</div>
+                  <button class="btn btn-ghost" id="btnCloseRush" style="width:100%;margin-top:8px;">关闭</button>
+                </div>`;
             gameArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
             document.getElementById('btnRevealAnswer').addEventListener('click', () => {
                 document.getElementById('rushAnswer').style.display = 'block';
                 speakText(target.pinyin + '，' + target.example);
             });
-            document.getElementById('btnCloseRush').addEventListener('click', () => {
-                gameArea.style.display = 'none';
-            });
+            document.getElementById('btnCloseRush').addEventListener('click', () => { gameArea.style.display = 'none'; });
         }
 
         // ==================== 管理后台 ====================
@@ -1534,47 +1235,24 @@
             form.style.display = form.style.display === 'none' ? 'block' : 'none';
             if (form.style.display === 'block') form.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-
         function saveNewChar() {
             const charInput = document.getElementById('adminCharInput');
             const pinyinInput = document.getElementById('adminPinyinInput');
             const exampleInput = document.getElementById('adminExampleInput');
             const topicInput = document.getElementById('adminTopicInput');
             const levelInput = document.getElementById('adminLevelInput');
-
             const char = charInput.value.trim();
             const pinyin = pinyinInput.value.trim();
             const example = exampleInput.value.trim();
             const topic = topicInput.value;
             const level = parseInt(levelInput.value);
-
-            if (!char || !pinyin) {
-                showToast('⚠️ 汉字和拼音不能为空');
-                return;
-            }
-            if (char.length !== 1) {
-                showToast('⚠️ 请输入一个汉字');
-                return;
-            }
-            const exists = charLibrary.find(c => c.char === char);
-            if (exists) {
-                showToast('⚠️ 字库中已有「' + char + '」');
-                return;
-            }
-
-            const newChar = {
-                char,
-                pinyin,
-                example: example || (char + '·' + char),
-                topic,
-                level,
-                id: 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5)
-            };
+            if (!char || !pinyin) { showToast('⚠️ 汉字和拼音不能为空'); return; }
+            if (char.length !== 1) { showToast('⚠️ 请输入一个汉字'); return; }
+            if (charLibrary.find(c => c.char === char)) { showToast('⚠️ 字库中已有「' + char + '」'); return; }
+            const newChar = { char, pinyin, example: example || (char + '·' + char), topic, level, id: 'c' + Date.now().toString(36)+Math.random().toString(36).slice(2,5) };
             charLibrary.push(newChar);
             saveAllData();
-            updateCurrentChar();
-            updateProgressUI();
-            updateStatsPage();
+            updateCurrentChar(); updateProgressUI(); updateStatsPage();
             document.getElementById('adminCharInput').value = '';
             document.getElementById('adminPinyinInput').value = '';
             document.getElementById('adminExampleInput').value = '';
@@ -1582,22 +1260,16 @@
             showToast('✅ 已添加「' + char + '」到字库');
             speakText('已添加新字' + char);
         }
-
         function toggleLearnersList() {
             const card = document.getElementById('learnersListCard');
             card.style.display = card.style.display === 'none' ? 'block' : 'none';
             if (card.style.display === 'block') {
                 document.getElementById('learnersList').innerHTML = `
-              <div style="padding:8px;background:#fafaf7;border-radius:8px;margin:4px 0;">
-                <strong>👤 妈妈（学员）</strong><br>
-                <span style="font-size:var(--font-sm);color:var(--text-soft);">
-                  已学：${learnedCharIds.size} 字 | 连续：${streakData.currentStreak || 0} 天
-                </span>
-              </div>
-              <p style="font-size:var(--font-xs);color:var(--text-soft);margin-top:8px;">
-                💡 完整学员管理需连接Supabase数据库
-              </p>
-            `;
+                    <div style="padding:8px;background:#fafaf7;border-radius:8px;margin:4px 0;">
+                        <strong>👤 妈妈（学员）</strong><br>
+                        <span style="font-size:var(--font-sm);color:var(--text-soft);">已学：${learnedCharIds.size} 字 | 连续：${streakData.currentStreak || 0} 天</span>
+                    </div>
+                    <p style="font-size:var(--font-xs);color:var(--text-soft);margin-top:8px;">💡 完整学员管理需连接Supabase数据库</p>`;
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
@@ -1605,171 +1277,79 @@
         // ==================== Toast & Dialog ====================
         function showToast(message) {
             const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
+            const toast = document.createElement('div'); toast.className = 'toast'; toast.textContent = message;
             container.appendChild(toast);
             setTimeout(() => { toast.remove(); }, 2200);
         }
-
         function showConfirm(title, message, onConfirm) {
             const container = document.getElementById('dialogContainer');
-            const overlay = document.createElement('div');
-            overlay.className = 'overlay';
+            const overlay = document.createElement('div'); overlay.className = 'overlay';
             overlay.innerHTML = `
-            <div class="dialog">
-              <h3>${escapeHtml(title)}</h3>
-              <p>${escapeHtml(message)}</p>
-              <div class="btn-row">
-                <button class="btn btn-outline cancel-btn">取消</button>
-                <button class="btn btn-primary confirm-btn">确认</button>
-              </div>
-            </div>
-          `;
+                <div class="dialog">
+                  <h3>${escapeHtml(title)}</h3>
+                  <p>${escapeHtml(message)}</p>
+                  <div class="btn-row">
+                    <button class="btn btn-outline cancel-btn">取消</button>
+                    <button class="btn btn-primary confirm-btn">确认</button>
+                  </div>
+                </div>`;
             container.appendChild(overlay);
             overlay.querySelector('.cancel-btn').addEventListener('click', () => { overlay.remove(); });
-            overlay.querySelector('.confirm-btn').addEventListener('click', () => {
-                overlay.remove();
-                if (onConfirm) onConfirm();
-            });
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) overlay.remove();
-            });
+            overlay.querySelector('.confirm-btn').addEventListener('click', () => { overlay.remove(); if (onConfirm) onConfirm(); });
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
         }
 
-        // ==================== 事件监听 ====================
+        // ==================== 事件绑定 ====================
         function setupEventListeners() {
-            // 朗读按钮
-            document.getElementById('btnSpeak').addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                speakCurrentChar();
-            });
-            // 大字点击也可朗读
-            document.getElementById('bigChar').addEventListener('click', () => {
-                speakCurrentChar();
-            });
-            // 学会了
+            document.getElementById('btnSpeak').addEventListener('click', (e) => { e.preventDefault(); speakCurrentChar(); });
+            document.getElementById('bigChar').addEventListener('click', speakCurrentChar);
             document.getElementById('btnMarkLearned').addEventListener('click', markAsLearned);
-            // 下一个字
             document.getElementById('btnNextChar').addEventListener('click', moveToNextChar);
-            // 小测验
             document.getElementById('btnQuizMode').addEventListener('click', startQuiz);
-            // 关闭测验
             document.getElementById('btnCloseQuiz').addEventListener('click', closeQuiz);
-            // 跟写练习
             document.getElementById('btnWriteMode').addEventListener('click', startWriteMode);
-            // 主题标签
             document.getElementById('topicTags').addEventListener('click', (e) => {
                 if (e.target.classList.contains('topic-tag')) {
-                    currentTopicFilter = e.target.dataset.topic;
-                    currentCharIndex = 0;
-                    renderTopicTags();
-                    updateCurrentChar();
-                    updateProgressUI();
+                    currentTopicFilter = e.target.dataset.topic; currentCharIndex = 0;
+                    renderTopicTags(); updateCurrentChar(); updateProgressUI();
                     document.getElementById('charCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
                     setTimeout(speakCurrentChar, 400);
                 }
             });
-            // 聊天
             document.getElementById('btnSendMsg').addEventListener('click', handleSendMessage);
-            document.getElementById('chatInput').addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    handleSendMessage();
-                }
-            });
+            document.getElementById('chatInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); handleSendMessage(); } });
             document.getElementById('btnVoiceMsg').addEventListener('click', handleVoiceMessage);
-            // 小游戏
             document.getElementById('gameCard1').addEventListener('click', startWordChainGame);
             document.getElementById('gameCard2').addEventListener('click', startRushGame);
-            // 管理后台
-            document.getElementById('btnAddChar')?.addEventListener('click', toggleAddCharForm);
-            document.getElementById('btnSaveChar')?.addEventListener('click', saveNewChar);
-            document.getElementById('btnViewLearners')?.addEventListener('click', toggleLearnersList);
-            // 用户头像
-            document.getElementById('userAvatar').addEventListener('click', () => {
-                showToast('👤 当前角色：' + (userRole === 'admin' ? '管理员' : '学员'));
-            });
-            // 消息通知按钮
+            document.getElementById('btnAddChar').addEventListener('click', toggleAddCharForm);
+            document.getElementById('btnSaveChar').addEventListener('click', saveNewChar);
+            document.getElementById('btnViewLearners').addEventListener('click', toggleLearnersList);
+            document.getElementById('userAvatar').addEventListener('click', () => { showToast('👤 当前角色：' + (userRole === 'admin' ? '管理员' : '学员')); });
             document.getElementById('btnNotifications').addEventListener('click', () => {
-                const unread = learningHistory.filter(h => {
-                    const d = new Date(h.timestamp);
-                    return d > new Date(Date.now() - 24 * 60 * 60 * 1000);
-                }).length;
+                const unread = learningHistory.filter(h => new Date(h.timestamp) > new Date(Date.now() - 86400000)).length;
                 showToast('📬 今日学习记录：' + unread + ' 条');
-            });
-            // 全局防误触：双击空白区域不做任何事
-            document.addEventListener('dblclick', function(e) {
-                if (e.target === document.body || e.target === document.getElementById('appContainer')) {
-                    e.preventDefault();
-                }
             });
         }
 
         function setupNavListeners() {
-            const navItems = document.querySelectorAll('.nav-item');
-            const pages = document.querySelectorAll('.page');
-
-            navItems.forEach(item => {
+            document.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', () => {
                     const pageId = item.dataset.page;
-                    // 切换active
-                    navItems.forEach(n => n.classList.remove('active'));
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
                     item.classList.add('active');
-                    // 切换页面
-                    pages.forEach(p => p.classList.remove('active'));
+                    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                     const targetPage = document.getElementById(pageId);
-                    if (targetPage) {
-                        targetPage.classList.add('active');
-                        targetPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    // 刷新对应页面数据
+                    if (targetPage) { targetPage.classList.add('active'); targetPage.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
                     if (pageId === 'pageStats') updateStatsPage();
-                    if (pageId === 'pageCommunity') {
-                        renderChatMessages();
-                        scrollChatToBottom();
-                    }
-                    if (pageId === 'pageLearn') {
-                        updateCurrentChar();
-                        updateProgressUI();
-                    }
+                    if (pageId === 'pageCommunity') { renderChatMessages(); scrollChatToBottom(); }
+                    if (pageId === 'pageLearn') { updateCurrentChar(); updateProgressUI(); }
                 });
             });
         }
 
-        // ==================== 页面可见性变化时保存 ====================
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                saveAllData();
-                console.log('💾 页面隐藏，数据已保存');
-            }
-        });
-
-        // ==================== 定期自动保存 ====================
-        setInterval(() => {
-            saveAllData();
-        }, 30000); // 每30秒自动保存
-
-        // ==================== 启动应用 ====================
+        document.addEventListener('visibilitychange', () => { if (document.hidden) { saveAllData(); } });
+        setInterval(saveAllData, 30000);
         init();
-        console.log('✅ 识字乐园初始化完成');
-        console.log('📋 功能清单：');
-        console.log('  📖 汉字学习卡片（大字+拼音+组词）');
-        console.log('  🔊 Web Speech API 语音朗读');
-        console.log('  🎯 四选一测验模式');
-        console.log('  ✍️ 跟写练习引导');
-        console.log('  📊 学习进度统计+趋势图');
-        console.log('  💬 家庭社群聊天（文字+语音提示）');
-        console.log('  🎮 字词接龙+识字抢答小游戏');
-        console.log('  🔧 管理后台（添加字库+查看学员）');
-        console.log('  📂 7大生活主题分类');
-        console.log('  ⭐ 4级难度体系');
-        console.log('  🔒 防误触确认弹窗');
-        console.log('  💾 本地存储+自动保存');
-        console.log('  📱 移动端全面优化');
-        console.log('  🛡️ 纯静态安全站点，无病毒风险');
-        console.log('  🔗 支持Supabase云端数据库扩展');
     </script>
 </body>
 </html>
