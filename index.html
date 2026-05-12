@@ -4,98 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>识字伴</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 尝试用更快的 CDN 加载 Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fdf6f0;display:flex;justify-content:center;min-height:100vh}
-    .container{width:100%;max-width:480px;background:rgba(255,248,240,0.95);min-height:100vh;padding:20px}
-    .nav-title{font-size:1.5rem;font-weight:bold;color:#b45f3a;text-align:center;margin-bottom:20px}
-    .btn{background:#ecca9c;border:none;border-radius:40px;padding:16px;font-size:1.2rem;font-weight:bold;color:#4a3f35;width:100%;margin:10px 0;cursor:pointer}
-    .btn-secondary{background:#f7e9d7}
-    .card{background:#fff;border-radius:24px;padding:20px;margin-bottom:15px;box-shadow:0 4px 8px rgba(0,0,0,0.03)}
-    .big-char{font-size:5rem;text-align:center;color:#6b4e3d;margin:20px 0;background:#fff7f0;border-radius:20px;padding:20px}
-    .page{display:none}
-    .page.active{display:block}
-    input{padding:14px;border:1px solid #eddccd;border-radius:16px;width:100%;margin:8px 0;font-size:1rem}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:"Helvetica Neue",Arial,sans-serif; background:#fdf6f0; display:flex; justify-content:center; min-height:100vh; }
+    .container { width:100%; max-width:480px; background:rgba(255,248,240,0.95); min-height:100vh; padding:20px; }
+    .nav-title { font-size:1.5rem; font-weight:bold; color:#b45f3a; text-align:center; margin-bottom:20px; }
+    .btn { background:#ecca9c; border:none; border-radius:40px; padding:16px; font-size:1.2rem; font-weight:bold; color:#4a3f35; width:100%; margin:10px 0; cursor:pointer; }
+    .btn-secondary { background:#f7e9d7; }
+    .card { background:#fff; border-radius:24px; padding:20px; margin-bottom:15px; box-shadow:0 4px 8px rgba(0,0,0,0.03); }
+    .big-char { font-size:5rem; text-align:center; color:#6b4e3d; margin:20px 0; background:#fff7f0; border-radius:20px; padding:20px; }
+    .page { display:none; }
+    .page.active { display:block; }
+    input { padding:14px; border:1px solid #eddccd; border-radius:16px; width:100%; margin:8px 0; font-size:1rem; }
+    #statusBar { padding:10px; background:#fce4d6; border-radius:12px; margin-bottom:15px; font-size:0.9rem; color:#8b4513; text-align:center; }
   </style>
 </head>
 <body>
 <div class="container">
   <div class="nav-title">🌸 识字伴</div>
 
-  <!-- 登录 -->
-  <div class="page active" id="loginPage">
-    <h3 style="color:#b45f3a">登录 / 注册</h3>
-    <input type="email" id="email" placeholder="邮箱（妈妈可以用 mom@shiziban.com）" value="mom@shiziban.com">
-    <input type="password" id="password" placeholder="密码（简单好记）" value="123456">
-    <button class="btn" id="loginBtn">进入</button>
-    <p style="color:#888;text-align:center">第一次点自动注册，下次同邮箱登录</p>
-  </div>
-
-  <!-- 首页 -->
-  <div class="page" id="homePage">
-    <h2 id="welcome"></h2>
-    <div class="card">
-      <p>📖 已学字数：<span id="learnedCount">0</span></p>
-    </div>
-    <button class="btn" id="startLearnBtn">📚 开始识字</button>
-    <button class="btn btn-secondary" id="addCharBtn" style="display:none">➕ 添加汉字</button>
-    <button class="btn btn-secondary" onclick="logout()">退出</button>
-  </div>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>识字伴</title>
-  <!-- 换一个更稳定的 Supabase 库 -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fdf6f0;display:flex;justify-content:center;min-height:100vh}
-    .container{width:100%;max-width:480px;background:rgba(255,248,240,0.95);min-height:100vh;padding:20px}
-    .nav-title{font-size:1.5rem;font-weight:bold;color:#b45f3a;text-align:center;margin-bottom:20px}
-    .btn{background:#ecca9c;border:none;border-radius:40px;padding:16px;font-size:1.2rem;font-weight:bold;color:#4a3f35;width:100%;margin:10px 0;cursor:pointer}
-    .btn-secondary{background:#f7e9d7}
-    .card{background:#fff;border-radius:24px;padding:20px;margin-bottom:15px;box-shadow:0 4px 8px rgba(0,0,0,0.03)}
-    .big-char{font-size:5rem;text-align:center;color:#6b4e3d;margin:20px 0;background:#fff7f0;border-radius:20px;padding:20px}
-    .page{display:none}
-    .page.active{display:block}
-    input{padding:14px;border:1px solid #eddccd;border-radius:16px;width:100%;margin:8px 0;font-size:1rem}
-  </style>
-</head><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>识字伴</title>
-  <!-- 换一个更稳定的 Supabase 库 -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:"Helvetica Neue",Arial,sans-serif;background:#fdf6f0;display:flex;justify-content:center;min-height:100vh}
-    .container{width:100%;max-width:480px;background:rgba(255,248,240,0.95);min-height:100vh;padding:20px}
-    .nav-title{font-size:1.5rem;font-weight:bold;color:#b45f3a;text-align:center;margin-bottom:20px}
-    .btn{background:#ecca9c;border:none;border-radius:40px;padding:16px;font-size:1.2rem;font-weight:bold;color:#4a3f35;width:100%;margin:10px 0;cursor:pointer}
-    .btn-secondary{background:#f7e9d7}
-    .card{background:#fff;border-radius:24px;padding:20px;margin-bottom:15px;box-shadow:0 4px 8px rgba(0,0,0,0.03)}
-    .big-char{font-size:5rem;text-align:center;color:#6b4e3d;margin:20px 0;background:#fff7f0;border-radius:20px;padding:20px}
-    .page{display:none}
-    .page.active{display:block}
-    input{padding:14px;border:1px solid #eddccd;border-radius:16px;width:100%;margin:8px 0;font-size:1rem}
-  </style>
-</head>
-<body>
-<div class="container">
-  <div class="nav-title">🌸 识字伴</div>
+  <!-- 状态提示栏（所有操作反馈都会显示在这里） -->
+  <div id="statusBar">🎈 网络连接中...</div>
 
   <!-- 登录页 -->
   <div class="page active" id="loginPage">
     <h3 style="color:#b45f3a">登录 / 注册</h3>
-    <input type="email" id="email" placeholder="邮箱" value="mama123@qq.com">
+    <input type="email" id="email" placeholder="邮箱" value="mom123@qq.com">
     <input type="password" id="password" placeholder="密码" value="12345678">
     <button class="btn" id="loginBtn">进入</button>
-    <p style="color:#888;text-align:center">第一次点自动注册，下次同邮箱登录</p>
+    <p style="color:#888;text-align:center">第一次点自动注册，下次直接登录</p>
   </div>
 
   <!-- 首页 -->
@@ -134,15 +73,24 @@
 </div>
 
 <script>
-  // 先检查库有没有加载成功（手机上会直接弹出提醒）
-  if (!window.supabase) {
-    alert('网络加载失败，请刷新页面或切换网络后重试');
+  // 显示状态信息
+  function setStatus(msg, isGood = true) {
+    const bar = document.getElementById('statusBar');
+    bar.textContent = msg;
+    bar.style.background = isGood ? '#d4edda' : '#fce4d6';
   }
 
-  // 你的专属配置
+  // 检查 supabase 库是否加载
+  if (!window.supabase) {
+    setStatus('❌ 网络异常，库未加载，请检查网络后刷新页面', false);
+  } else {
+    setStatus('✅ 库加载成功');
+  }
+
+  // 初始化 Supabase
   const SUPABASE_URL = 'https://nqdzfutbozumathqccbq.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_MEt_sRz60PxKjn9ux3DSHw_cFD_sTia';
-  const supabase = window.supabase?.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
   let currentUser = null;
 
@@ -161,60 +109,73 @@
     speechSynthesis.speak(u);
   }
 
-  // 登录/注册按钮（加了详细提示）
+  // 登录/注册按钮
   document.getElementById('loginBtn').addEventListener('click', async () => {
-    if (!supabase) return alert('系统未就绪，请稍后重试');
+    if (!supabase) {
+      setStatus('❌ 系统未就绪，请刷新', false);
+      return;
+    }
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-    if (!email || !password) return alert('请填写邮箱和密码');
-    
-    alert('正在尝试登录，请稍候...');  // 会弹窗，说明点击事件生效了
+    if (!email || !password) {
+      setStatus('❗ 请填写邮箱和密码', false);
+      return;
+    }
+
+    setStatus('⏳ 正在验证身份...');
 
     try {
       let { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
       if (error) {
-        // 登录失败，尝试注册
-        alert('新用户，正在注册...');
+        // 登录失败，可能是新用户，尝试注册
+        setStatus('🆕 新用户，自动注册中...');
         const { error: signUpError } = await supabase.auth.signUp({ email, password });
         if (signUpError) {
-          alert('注册失败：' + signUpError.message);
+          setStatus('❌ 注册失败：' + signUpError.message, false);
           return;
         }
-        // 注册成功，再登录一次
+        // 注册后再次登录
         const { data: newLogin, error: loginError } = await supabase.auth.signInWithPassword({ email, password });
         if (loginError) {
-          alert('自动登录失败：' + loginError.message);
+          setStatus('❌ 自动登录失败：' + loginError.message, false);
           return;
         }
         currentUser = newLogin.user;
+        setStatus('🎉 注册并登录成功！');
       } else {
         currentUser = data.user;
+        setStatus('👋 欢迎回来！');
       }
-      alert('登录成功！');
       goHome();
     } catch (err) {
-      alert('发生错误：' + err.message);
+      setStatus('⚠️ 网络错误：' + err.message, false);
     }
   });
 
   async function loadStats() {
     if (!currentUser) return;
     document.getElementById('welcome').textContent = '👋 你好，' + currentUser.email;
-    const { count } = await supabase.from('learning_log').select('*', { count: 'exact', head: true }).eq('email', currentUser.email);
-    document.getElementById('learnedCount').textContent = count || 0;
-    if (currentUser.email.includes('admin')) {
+    if (supabase) {
+      const { count } = await supabase.from('learning_log').select('*', { count: 'exact', head: true }).eq('email', currentUser.email);
+      document.getElementById('learnedCount').textContent = count || 0;
+    }
+    // 管理员识别
+    if (currentUser.email && currentUser.email.includes('admin')) {
       document.getElementById('addCharBtn').style.display = 'block';
     } else {
       document.getElementById('addCharBtn').style.display = 'none';
     }
   }
 
+  // 识字功能
   document.getElementById('startLearnBtn').addEventListener('click', () => {
     showPage('learnPage');
     loadNext();
   });
 
   async function loadNext() {
+    if (!supabase) return;
     const { data } = await supabase.from('characters').select('*').limit(1).maybeSingle();
     if (data) {
       document.getElementById('charDisplay').textContent = data.char;
@@ -223,7 +184,7 @@
       speak(data.char);
     } else {
       document.getElementById('charDisplay').textContent = '库';
-      alert('字库为空，请管理员先添加汉字');
+      setStatus('📖 字库是空的，请管理员先加几个字', false);
     }
   }
   window.loadNext = loadNext;
@@ -235,21 +196,24 @@
 
   document.getElementById('markLearnedBtn').addEventListener('click', async () => {
     const char = document.getElementById('charDisplay').textContent;
-    if (!char || char === '库' || !currentUser) return;
+    if (!char || char === '库' || !currentUser || !supabase) return;
     await supabase.from('learning_log').insert({ email: currentUser.email, char });
+    setStatus('✅ 已记录：' + char);
     loadNext();
   });
 
+  // 管理员加字
   document.getElementById('addCharBtn').addEventListener('click', () => showPage('adminPage'));
   document.getElementById('submitCharBtn').addEventListener('click', async () => {
     const char = document.getElementById('newChar').value.trim();
     const pinyin = document.getElementById('newPinyin').value.trim();
     const meaning = document.getElementById('newMeaning').value.trim();
-    if (!char || !pinyin) return alert('汉字和拼音必填');
+    if (!char || !pinyin) return setStatus('❗ 汉字和拼音必填', false);
+    if (!supabase) return;
     const { error } = await supabase.from('characters').insert({ char, pinyin, meaning });
-    if (error) alert('添加失败');
+    if (error) setStatus('❌ 添加失败：' + error.message, false);
     else {
-      alert('添加成功！');
+      setStatus('⭐ 添加成功！');
       document.getElementById('newChar').value = '';
       document.getElementById('newPinyin').value = '';
       document.getElementById('newMeaning').value = '';
@@ -258,11 +222,21 @@
   });
 
   async function logout() {
-    await supabase.auth.signOut();
+    if (supabase) await supabase.auth.signOut();
     currentUser = null;
     showPage('loginPage');
+    setStatus('已安全退出');
   }
   window.logout = logout;
+
+  // 页面加载完成后的初始状态
+  window.addEventListener('load', () => {
+    if (supabase) {
+      setStatus('✅ 准备就绪，可以进入');
+    } else {
+      setStatus('❌ 连接失败，请刷新', false);
+    }
+  });
 </script>
 </body>
 </html>
